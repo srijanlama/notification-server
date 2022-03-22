@@ -19,11 +19,11 @@ class CreateJobNotificationsTable extends Migration
             $table->string('country');
             $table->string('title_en');
             $table->string('title_np');
-            $table->string('salary_min');
-            $table->string('salary_max');
-            $table->string('lt_number');
+            $table->string('salary_min')->nullable();
+            $table->string('salary_max')->nullable();
+            $table->string('lt_number')->nullable();
             $table->dateTime('expires_on');
-            $table->dateTime('final_interview_date');
+            $table->dateTime('final_interview_date')->nullable();
             $table->integer('no_of_vacancies');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->boolean('is_promoted')->default(1);
