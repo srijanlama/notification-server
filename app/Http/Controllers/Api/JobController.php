@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    public function store(){
-
+    public function store(Request $request){
+         $job = json_decode(request('job'));
         $data = request()->validate([
             'manpower_name' => 'required|string',
             'country' => 'required|string',
@@ -24,6 +24,15 @@ class JobController extends Controller
             'status' => 'required',
             'is_promoted' => 'boolean',
         ]);
+        $data['title_en'] = $job->title_en;
+        $data['title_np'] = $job->tilte_np;
+        $data['salary_min'] = $job->salary_min;
+        $data['salary_max'] = $job->salary_max;
+        $data['lt_number'] = $job->lt_number;
+        $data['expires_on'] = $job->expires_on;
+        $data['no_of_vacancies'] = $job->no_of_vacancies;
+        $data['status'] = $job->status;
+        $data['is_promoted'] = $job->is_promoted;
 
         $job_notification = new JobNotification($data);
 
